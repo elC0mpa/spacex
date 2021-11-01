@@ -1,6 +1,16 @@
-$color-primary: #55c57a;
-$color-primary-light: #7ed56f;
-$color-primary-dark: #28b485;
+$navy-blue: #03045eff;
+$dark-cornflower-blue: #023e8aff;
+$star-command-blue: #0077b6ff;
+$blue-green: #0096c7ff;
+$cerulean-crayola: #00b4d8ff;
+$sky-blue-crayola: #48cae4ff;
+$sky-blue-crayola-2: #90e0efff;
+$blizzard-blue: #ade8f4ff;
+$powder-blue: #caf0f8ff;
+
+$color-primary: $star-command-blue;
+$color-primary-light: $blue-green;
+$color-primary-dark: $dark-cornflower-blue;
 
 $color-secondary-light: #ffb900;
 $color-secondary-dark: #ff7730;
