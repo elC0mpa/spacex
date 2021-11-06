@@ -10,3 +10,14 @@ export const nextLaunchInfo = () => {
     }
   });
 };
+
+export const rocketsInfo = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const { data } = await axios.get("v4/rockets");
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};

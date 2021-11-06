@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <navigation-button></navigation-button>
     <div class="home__info-container" v-if="!isLoading">
       <p class="home__info-container--header">
         Next launch: <span>{{ name }}</span>
@@ -9,8 +8,12 @@
         :time="timeToLaunch"
         v-slot="{ days, hours, minutes, seconds }"
       >
-        Time Remaining：{{ days }} days, {{ hours }} hours,
-        {{ minutes }} minutes, {{ seconds }} seconds.
+        <time-left
+          :days="days"
+          :hours="hours"
+          :minutes="minutes"
+          :seconds="seconds"
+        ></time-left>
       </vue-count-down>
     </div>
   </div>
@@ -18,7 +21,7 @@
 
 <script>
 // @ is an alias to /src
-import NavigationButton from "@/components/NavigationButton";
+import TimeLeft from "@/components/TimeLeft";
 import { nextLaunchInfo } from "@/composables/api";
 import { reactive, toRefs } from "@vue/reactivity";
 import VueCountDown from "@chenfengyuan/vue-countdown";
@@ -27,8 +30,8 @@ import relativeTime from "dayjs/plugin/relativeTime";
 export default {
   name: "Home",
   components: {
-    NavigationButton,
     VueCountDown,
+    TimeLeft,
   },
   setup() {
     dayjs.extend(relativeTime);

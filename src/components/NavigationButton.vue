@@ -10,20 +10,14 @@
 
     <nav class="navigation__nav">
       <ul class="navigation__list">
-        <li class="navigation__item">
-          <a href="#" class="navigation__link"><span>01</span>About Natous</a>
-        </li>
-        <li class="navigation__item">
-          <a href="#" class="navigation__link"><span>02</span>Your benfits</a>
-        </li>
-        <li class="navigation__item">
-          <a href="#" class="navigation__link"><span>03</span>Popular tours</a>
-        </li>
-        <li class="navigation__item">
-          <a href="#" class="navigation__link"><span>04</span>Stories</a>
-        </li>
-        <li class="navigation__item">
-          <a href="#" class="navigation__link"><span>05</span>Book now</a>
+        <li
+          class="navigation__item"
+          v-for="(item, index) in items"
+          :key="index"
+        >
+          <a href="#" @click.prevent="navigate(item)" class="navigation__link"
+            ><span>{{ item.label }}</span></a
+          >
         </li>
       </ul>
     </nav>
@@ -31,9 +25,23 @@
 </template>
 
 <script>
+import { useRouter } from "vue-router";
 export default {
-  setup() {
-    return {};
+  name: "NavigationButton",
+  props: {
+    items: {
+      required: true,
+      type: Array,
+    },
+  },
+  setup(props) {
+    const router = useRouter();
+    const navigate = (item) => {
+      router.push({
+        path: item.to,
+      });
+    };
+    return { props, navigate };
   },
 };
 </script>
