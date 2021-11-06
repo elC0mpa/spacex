@@ -1,6 +1,11 @@
 <template>
   <div class="navigation">
-    <input type="checkbox" class="navigation__checkbox" id="navi-toggle" />
+    <input
+      type="checkbox"
+      class="navigation__checkbox"
+      ref="button"
+      id="navi-toggle"
+    />
 
     <label for="navi-toggle" class="navigation__button">
       <span class="navigation__icon">&nbsp;</span>
@@ -25,6 +30,7 @@
 </template>
 
 <script>
+import { ref } from "@vue/reactivity";
 import { useRouter } from "vue-router";
 export default {
   name: "NavigationButton",
@@ -35,13 +41,15 @@ export default {
     },
   },
   setup(props) {
+    const button = ref(null);
     const router = useRouter();
     const navigate = (item) => {
       router.push({
         path: item.to,
       });
+      button.value.click();
     };
-    return { props, navigate };
+    return { props, navigate, button };
   },
 };
 </script>

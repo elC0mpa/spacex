@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div>Rockets view</div>
 </template>
 
 <script>
