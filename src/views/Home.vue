@@ -58,12 +58,18 @@ export default {
 
 <style lang="scss">
 .home {
-  background-image: url("../assets/images/background-home.jpeg");
-  background-position: right top;
+  background-image: url("../assets/images/background-home.jpg");
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
   width: 100vw;
   height: 100vh;
   color: $color-white;
   &__info-container {
+    background-color: #ffffff10;
+    backdrop-filter: blur(12px);
+    padding: 3rem;
+    border-radius: 2rem;
     position: absolute;
     top: 40%;
     left: 50%;
