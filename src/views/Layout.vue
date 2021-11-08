@@ -1,5 +1,11 @@
 <template>
-  <div>
+  <div
+    class="main-layout"
+    :class="{
+      'is-home': route.path === '/',
+      'is-rockets': route.path === '/rockets',
+    }"
+  >
     <navigation-button
       :items="[
         { label: 'Home', to: '/' },
@@ -13,15 +19,33 @@
 
 <script>
 import NavigationButton from "@/components/NavigationButton";
+import { useRoute } from "vue-router";
 export default {
   name: "Layout",
   components: {
     NavigationButton,
   },
   setup() {
-    return {};
+    const route = useRoute();
+    return { route };
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.main-layout {
+  padding: 10rem 20%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  &.is-home {
+    background-image: url("../assets/images/background-home.jpg");
+    background-position: top;
+    height: 100vh;
+  }
+  &.is-rockets {
+    background-image: url("../assets/images/starship.jpeg");
+    background-position: center;
+  }
+}
+</style>
