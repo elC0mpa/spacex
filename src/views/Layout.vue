@@ -46,6 +46,7 @@ export default {
   &.is-rockets {
     background-image: url("../assets/images/starship.jpeg");
     background-position: center;
+    min-height: 100vh;
   }
 }
 </style>

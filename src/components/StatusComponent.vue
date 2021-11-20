@@ -22,14 +22,15 @@ export default {
 <style lang="scss" scoped>
 .status-component {
   padding: 0.5rem 1rem;
+  font-size: 1.8rem;
   text-transform: uppercase;
   font-weight: bold;
-  border: 2px solid white;
+  color: white;
   background-color: transparentize($color: red, $amount: 0.85);
-  color: red;
+  border: 2px solid red;
   &.is-active {
     background-color: transparentize($color: green, $amount: 0.85);
-    color: green;
+    border: 2px solid green;
   }
 }
 </style>

@@ -45,5 +45,9 @@ export default {
 
 <style lang="scss" scoped>
 .rockets {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  gap: 5rem;
 }
 </style>
