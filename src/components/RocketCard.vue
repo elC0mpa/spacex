@@ -55,12 +55,14 @@ export default {
   color: black;
   margin-top: 1.5rem;
   background-color: #ffffff10;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(20px);
   padding: 3rem;
   border-radius: 2rem;
   height: 30rem;
   display: flex;
   font-size: 1.8rem;
+  transition: all 0.5s;
+  cursor: pointer;
   &__info {
     margin-left: 1.5rem;
   }
@@ -84,6 +86,9 @@ export default {
   }
   &__specs-value {
     font-weight: bold;
+  }
+  &:hover {
+    transform: scale(1.02);
   }
 }
 </style>

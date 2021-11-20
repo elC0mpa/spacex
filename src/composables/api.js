@@ -21,3 +21,14 @@ export const rocketsInfo = () => {
     }
   });
 };
+
+export const rocketDetails = (id) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const { data } = await axios.get(`v4/rockets/${id}`);
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};

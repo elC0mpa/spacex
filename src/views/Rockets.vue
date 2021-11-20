@@ -4,6 +4,7 @@
       v-for="(rocket, index) in rockets"
       :rocket="rocket"
       :key="index"
+      @click="rocketDetails(rocket)"
     ></rocket-card>
   </div>
 </template>
@@ -12,6 +13,7 @@
 import { rocketsInfo } from "@/composables/api";
 import RocketCard from "@/components/RocketCard";
 import { reactive, toRefs } from "@vue/reactivity";
+import { useRouter } from "vue-router";
 export default {
   name: "Rockets",
   components: {
@@ -21,6 +23,7 @@ export default {
     const state = reactive({
       rockets: [],
     });
+    const router = useRouter();
     rocketsInfo()
       .then((data) => {
         state.rockets = [...data];
@@ -29,7 +32,13 @@ export default {
       .catch((error) => {
         console.log("Next launch error: ", error);
       });
-    return { ...toRefs(state) };
+
+    const rocketDetails = (rocket) => {
+      router.push({
+        path: `/rockets/${rocket.id}`,
+      });
+    };
+    return { ...toRefs(state), rocketDetails };
   },
 };
 </script>
