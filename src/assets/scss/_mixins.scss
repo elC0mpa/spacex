@@ -20,3 +20,9 @@
     } //1800
   }
 }
+
+@mixin main-text {
+  font-size: 5rem;
+  color: $star-command-blue;
+  font-weight: bold;
+}

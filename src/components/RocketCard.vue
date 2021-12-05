@@ -50,9 +50,7 @@ export default {
     min-height: 100%;
   }
   &__name {
-    font-size: 5rem;
-    color: $star-command-blue;
-    font-weight: bold;
+    @include main-text;
     position: absolute;
     transform: translateY(100%);
     opacity: 0;

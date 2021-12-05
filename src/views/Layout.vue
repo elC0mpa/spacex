@@ -2,8 +2,9 @@
   <div
     class="main-layout"
     :class="{
-      'is-home': route.path === '/',
-      'is-rockets': route.path === '/rockets',
+      'is-home': route.name === 'Home',
+      'is-rockets': route.name === 'Rockets',
+      'is-rocket-details': route.name === 'RocketDetails',
     }"
   >
     <navigation-button
@@ -44,7 +45,12 @@ export default {
     height: 100vh;
   }
   &.is-rockets {
-    background-image: url("../assets/images/starship.jpeg");
+    background-image: url("../assets/images/background-rockets.jpeg");
+    background-position: center;
+    min-height: 100vh;
+  }
+  &.is-rocket-details {
+    background: white;
     background-position: center;
     min-height: 100vh;
   }

@@ -13,14 +13,17 @@ const routes = [
       {
         path: "",
         component: Home,
+        name: "Home",
       },
       {
         path: "rockets",
         component: Rockets,
+        name: "Rockets",
       },
       {
         path: "rockets/:id",
         component: RocketDetails,
+        name: "RocketDetails",
       },
     ],
   },
