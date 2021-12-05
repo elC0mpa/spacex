@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import StatusComponent from "./StatusComponent.vue";
+import StatusComponent from "../StatusComponent.vue";
 export default {
   components: { StatusComponent },
   name: "RocketCard",

@@ -11,7 +11,7 @@
 
 <script>
 import { rocketsInfo } from "@/composables/api";
-import RocketCard from "@/components/RocketCard";
+import RocketCard from "@/components/Rockets/RocketCard";
 import { reactive, toRefs } from "@vue/reactivity";
 import { useRouter } from "vue-router";
 export default {

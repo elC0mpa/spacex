@@ -6,6 +6,7 @@
       ></rocket-images>
       <rocket-general-info :rocket="rocket"></rocket-general-info>
     </div>
+    <div class="rocket-details__specific-info"></div>
   </div>
 </template>
 
@@ -13,8 +14,8 @@
 import { rocketDetails } from "@/composables/api";
 import { useRoute } from "vue-router";
 import { reactive, toRefs } from "@vue/reactivity";
-import RocketImages from "@/components/RocketImages";
-import RocketGeneralInfo from "@/components/RocketGeneralInfo";
+import RocketImages from "@/components/RocketDetails/RocketImages";
+import RocketGeneralInfo from "@/components/RocketDetails/RocketGeneralInfo";
 
 export default {
   name: "RocketDetails",
