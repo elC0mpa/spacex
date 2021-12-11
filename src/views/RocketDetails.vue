@@ -6,7 +6,7 @@
       ></rocket-images>
       <rocket-general-info :rocket="rocket"></rocket-general-info>
     </div>
-    <div class="rocket-details__specific-info"></div>
+    <rocket-main-info :rocket="isLoading ? {} : rocket"></rocket-main-info>
   </div>
 </template>
 
@@ -16,12 +16,14 @@ import { useRoute } from "vue-router";
 import { reactive, toRefs } from "@vue/reactivity";
 import RocketImages from "@/components/RocketDetails/RocketImages";
 import RocketGeneralInfo from "@/components/RocketDetails/RocketGeneralInfo";
+import RocketMainInfo from "@/components/RocketDetails/RocketMainInfo";
 
 export default {
   name: "RocketDetails",
   components: {
     RocketImages,
     RocketGeneralInfo,
+    RocketMainInfo,
   },
   setup() {
     const route = useRoute();
