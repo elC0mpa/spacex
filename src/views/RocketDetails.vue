@@ -14,9 +14,9 @@
 import { rocketDetails } from "@/composables/api";
 import { useRoute } from "vue-router";
 import { reactive, toRefs } from "@vue/reactivity";
-import RocketImages from "@/components/RocketDetails/RocketImages";
-import RocketGeneralInfo from "@/components/RocketDetails/RocketGeneralInfo";
-import RocketMainInfo from "@/components/RocketDetails/RocketMainInfo";
+import RocketImages from "@/components/RocketDetails/RocketImages.vue";
+import RocketGeneralInfo from "@/components/RocketDetails/RocketGeneralInfo.vue";
+import RocketMainInfo from "@/components/RocketDetails/RocketMainInfo.vue";
 
 export default {
   name: "RocketDetails",
