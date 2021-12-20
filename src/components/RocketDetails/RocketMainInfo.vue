@@ -1,15 +1,32 @@
 <template>
   <div class="rocket-main-info">
-    <p class="rocket-main-info__title">
-      {{ titles[actualInfo] }}
-    </p>
-    {{ rows }}
+    <div class="rocket-main-info__titles-container">
+      <p class="rocket-main-info__prev-title" @click="actualInfo--">
+        {{ actualInfo === 0 ? "" : `${titles[actualInfo - 1]}` }}
+      </p>
+      <p class="rocket-main-info__title">
+        {{ titles[actualInfo] }}
+      </p>
+      <p class="rocket-main-info__next-title" @click="actualInfo++">
+        {{
+          actualInfo === titles.length - 1 ? "" : `${titles[actualInfo + 1]}`
+        }}
+      </p>
+    </div>
+    <info-row
+      v-for="(row, index) in rows"
+      :label="row.prop"
+      :value="row.value"
+      :key="index"
+    />
   </div>
 </template>
 
 <script>
 import { computed, reactive, toRefs } from "@vue/reactivity";
+import InfoRow from "@/components/InfoRow.vue";
 export default {
+  components: { InfoRow },
   name: "RocketMainInfo",
   props: {
     rocket: {
@@ -41,6 +58,7 @@ export default {
             value: `${props.rocket?.stages}`,
           });
           break;
+
         case 1:
           info.push({
             prop: "Type",
@@ -72,21 +90,22 @@ export default {
           });
           info.push({
             prop: "Specific Impulse",
-            value: `${props.rocket?.isp.sea_level} (sea) | ${props.rocket?.isp.vaccum} (vaccum)`,
+            value: `${props.rocket?.engines.isp.sea_level} (sea) | ${props.rocket?.engines.isp.vacuum} (vacuum)`,
           });
           info.push({
             prop: "Thrust to Weight Ratio",
-            value: `${props.rocket?.thrust_to_weight}`,
+            value: `${props.rocket?.engines.thrust_to_weight}`,
           });
           info.push({
             prop: "Sea Level Thrust",
-            value: `${props.rocket?.thrust_sea_level.kN} kN | ${props.rocket?.thrust_sea_level.lbf} lbf `,
+            value: `${props.rocket?.engines.thrust_sea_level.kN} kN | ${props.rocket?.engines.thrust_sea_level.lbf} lbf `,
           });
           info.push({
             prop: "Vacuum Thrust",
-            value: `${props.rocket?.thrust_vacuum.kN} kN | ${props.rocket?.thrust_vacuum.lbf} lbf `,
+            value: `${props.rocket?.engines.thrust_vacuum.kN} kN | ${props.rocket?.engines.thrust_vacuum.lbf} lbf `,
           });
           break;
+
         case 2:
           info.push({
             prop: "Engines",
@@ -113,6 +132,7 @@ export default {
             value: `${props.rocket?.first_stage.thrust_vacuum.kN} kN | ${props.rocket?.first_stage.thrust_vacuum.lbf} lbf`,
           });
           break;
+
         case 3:
           info.push({
             prop: "Engines",
@@ -159,9 +179,23 @@ export default {
 .rocket-main-info {
   width: 50%;
   margin: 3rem auto 0 auto;
+  &__titles-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   &__title {
     @include main-text;
     text-align: center;
+    flex-grow: 3;
+  }
+  &__next-title,
+  &__prev-title {
+    @include main-text;
+    font-size: 2rem;
+    text-align: center;
+    cursor: pointer;
+    flex-grow: 1;
   }
 }
 </style>
