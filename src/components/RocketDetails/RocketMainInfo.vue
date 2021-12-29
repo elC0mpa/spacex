@@ -185,6 +185,15 @@ export default {
   &__title {
     @include main-text;
     text-align: center;
+    flex-grow: 3;
+  }
+  &__next-title,
+  &__prev-title {
+    @include main-text;
+    font-size: 2rem;
+    text-align: center;
+    cursor: pointer;
+    flex-grow: 1;
   }
   &__next-title,
   &__prev-title {
