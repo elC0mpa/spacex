@@ -2,15 +2,13 @@
   <div class="rocket-main-info">
     <div class="rocket-main-info__titles-container">
       <p class="rocket-main-info__prev-title" @click="actualInfo--">
-        {{ actualInfo === 0 ? "" : `${titles[actualInfo - 1]}` }}
+        {{ actualInfo === 0 ? "" : "&#8612;" }}
       </p>
       <p class="rocket-main-info__title">
         {{ titles[actualInfo] }}
       </p>
       <p class="rocket-main-info__next-title" @click="actualInfo++">
-        {{
-          actualInfo === titles.length - 1 ? "" : `${titles[actualInfo + 1]}`
-        }}
+        {{ actualInfo === titles.length - 1 ? "" : "&#8614;" }}
       </p>
     </div>
     <info-row
@@ -196,6 +194,12 @@ export default {
     text-align: center;
     cursor: pointer;
     flex-grow: 1;
+  }
+  &__next-title,
+  &__prev-title {
+    @include main-text;
+    text-align: center;
+    cursor: pointer;
   }
 }
 </style>

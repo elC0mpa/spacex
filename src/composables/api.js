@@ -32,3 +32,26 @@ export const rocketDetails = (id) => {
     }
   });
 };
+
+export const latestLaunchesInfo = (page, pageSize) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const { data } = await axios.post("v5/launches/query", {
+        query: {
+          upcoming: false,
+        },
+        options: {
+          page,
+          limit: pageSize,
+          sort: {
+            date_utc: "desc",
+          },
+        },
+      });
+      resolve(data);
+    } catch (error) {
+      console.error("ERROR: 💥 ", error);
+      reject(error);
+    }
+  });
+};

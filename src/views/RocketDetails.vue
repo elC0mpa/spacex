@@ -1,6 +1,6 @@
 <template>
   <div class="rocket-details">
-    <div class="rocket-details__main-info">
+    <div class="rocket-details__general-info">
       <rocket-images
         :images="isLoading ? [] : rocket.flickr_images"
       ></rocket-images>
@@ -16,7 +16,7 @@ import { useRoute } from "vue-router";
 import { reactive, toRefs } from "@vue/reactivity";
 import RocketImages from "@/components/RocketDetails/RocketImages.vue";
 import RocketGeneralInfo from "@/components/RocketDetails/RocketGeneralInfo.vue";
-import RocketMainInfo from "@/components/RocketDetails/RocketMainInfo.vue";
+import RocketMainInfo from "@/components/RocketDetails/RocketMainInfoDesktop.vue";
 
 export default {
   name: "RocketDetails",
@@ -48,12 +48,13 @@ export default {
 
 <style lang="scss">
 .rocket-details {
-  &__main-info {
+  &__general-info {
     display: flex;
     justify-content: space-between;
     > * {
-      flex: 0 0 48%;
+      flex: 0 0 45%;
     }
+    margin-bottom: 2rem;
   }
 }
 </style>

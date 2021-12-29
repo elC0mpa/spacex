@@ -3,6 +3,7 @@ import Home from "../views/Home.vue";
 import Layout from "../views/Layout.vue";
 import Rockets from "../views/Rockets.vue";
 import RocketDetails from "../views/RocketDetails.vue";
+import Launches from "@/views/Launches.vue";
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
         path: "rockets/:id",
         component: RocketDetails,
         name: "RocketDetails",
+      },
+      {
+        path: "launches/",
+        component: Launches,
+        name: "Launches",
       },
     ],
   },
