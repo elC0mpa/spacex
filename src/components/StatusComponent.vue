@@ -1,6 +1,6 @@
 <template>
   <span class="status-component" :class="{ 'is-active': active }">
-    {{ active ? "active" : "inactive" }}
+    {{ active ? activeText : inactiveText }}
   </span>
 </template>
 
@@ -11,6 +11,14 @@ export default {
     active: {
       type: Boolean,
       required: true,
+    },
+    activeText: {
+      type: String,
+      default: "active",
+    },
+    inactiveText: {
+      type: String,
+      default: "inactive",
     },
   },
   setup(props) {

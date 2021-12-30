@@ -5,6 +5,7 @@
       'is-home': route.name === 'Home',
       'is-rockets': route.name === 'Rockets',
       'is-rocket-details': route.name === 'RocketDetails',
+      'is-launches': route.name === 'Launches',
     }"
   >
     <navigation-button
@@ -53,6 +54,12 @@ export default {
     background: white;
     background-position: center;
     min-height: 100vh;
+  }
+  &.is-launches {
+    background-image: url("../assets/images/background-launches.jpeg");
+    background-position: center;
+    height: 100vh;
+    overflow: hidden;
   }
 }
 </style>

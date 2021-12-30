@@ -1,13 +1,27 @@
 <template>
   <div class="launch-card">
-    <status-component :active="rocket.active"></status-component>
-    <img class="rocket-card__image" :src="rocket.flickr_images[1]" />
-    <span class="rocket-card__name">{{ rocket.name }}</span>
+    <div class="launch-card__container">
+      <div class="launch-card__title-status-container">
+        <p class="launch-card__name">{{ launch?.name }}</p>
+        <status-component
+          activeText="success"
+          inactiveText="failure"
+          :active="launch?.success"
+        ></status-component>
+      </div>
+      <p class="launch-card__date">
+        {{ dayjs(launch?.date_utc).format("LLL") }}
+        ({{ dayjs(launch?.date_utc).toNow(true) }} ago)
+      </p>
+      <p class="launch-card__details">{{ launch?.details }}</p>
+    </div>
+    <img class="launch-card__image" :src="launch?.links?.patch?.small" />
   </div>
 </template>
 
 <script>
 import StatusComponent from "../StatusComponent.vue";
+import dayjs from "dayjs";
 export default {
   components: { StatusComponent },
   name: "LaunchesCard",
@@ -18,57 +32,55 @@ export default {
     },
   },
   setup(props) {
-    return { props };
+    const localizedFormat = require("dayjs/plugin/localizedFormat");
+    var relativeTime = require("dayjs/plugin/relativeTime");
+    dayjs.extend(localizedFormat);
+    dayjs.extend(relativeTime);
+    return { props, dayjs };
   },
 };
 </script>
 
 <style lang="scss">
-.rocket-card {
-  position: relative;
-  overflow: hidden;
+.launch-card {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  color: white;
+  min-height: 19rem;
   background-color: #ffffff10;
-  backdrop-filter: blur(20px);
-  padding: 3rem;
+  margin-bottom: 2rem;
+  padding: 2rem;
   border-radius: 2rem;
-  height: 30rem;
-  transition: all 0.5s;
   cursor: pointer;
-  opacity: 0.95;
-  transform-origin: center top;
-  transform-style: preserve-3d;
-  .status-component {
-    position: absolute;
-    transform: translateY(-100%);
-    opacity: 0;
-    transition: all 0.5s;
+  opacity: 0.85;
+  transition: all 0.5s;
+  backdrop-filter: blur(20px);
+  &:hover {
+    opacity: 1;
   }
-  &__image {
+  &__container {
+    position: relative;
+    margin-right: 36px;
     width: 80%;
-    min-height: 100%;
+  }
+  &__title-status-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   &__name {
     @include main-text;
-    position: absolute;
-    transform: translateY(100%);
-    opacity: 0;
-    bottom: 25px;
-    transition: all 0.5s;
   }
-  &:hover {
-    opacity: 1;
-    transform: translateX(-3px) scale(1.05) rotateY(15deg);
-    box-shadow: 0 8px 16px 3px rgba(#000, 0.6);
-    .rocket-card__name {
-      transform: translateY(0px);
-      opacity: 1;
-    }
-    .status-component {
-      transform: translateY(10px);
-      opacity: 1;
-    }
+  &__details {
+    font-size: 2rem;
+  }
+  &__date {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  &__image {
+    width: 150px;
+    align-self: center;
   }
 }
 </style>
