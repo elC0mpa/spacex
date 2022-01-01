@@ -55,3 +55,14 @@ export const latestLaunchesInfo = (page, pageSize) => {
     }
   });
 };
+
+export const launchDetails = (id) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const { data } = await axios.get(`v5/launches/${id}`);
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};

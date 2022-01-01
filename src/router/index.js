@@ -4,6 +4,7 @@ import Layout from "../views/Layout.vue";
 import Rockets from "../views/Rockets.vue";
 import RocketDetails from "../views/RocketDetails.vue";
 import Launches from "@/views/Launches.vue";
+import LaunchDetails from "@/views/LaunchDetails.vue";
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
         path: "launches/",
         component: Launches,
         name: "Launches",
+      },
+      {
+        path: "launches/:id",
+        component: LaunchDetails,
+        name: "LaunchDetails",
       },
     ],
   },

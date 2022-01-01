@@ -6,6 +6,7 @@
       :launch="launch"
       :last-launch="launches[launches.length - 4]"
       @last-item-visible="pagination"
+      @click="launchDetails(launch)"
     ></launches-card>
   </div>
 </template>
@@ -14,17 +15,21 @@
 import { latestLaunchesInfo } from "@/composables/api";
 import { reactive, toRefs } from "vue";
 import LaunchesCard from "@/components/Launches/LaunchesCard.vue";
+import { useRouter } from "vue-router";
 export default {
   name: "Launches",
   components: {
     LaunchesCard,
   },
+
   setup() {
     const state = reactive({
       launches: [],
       nextPage: 1,
       pageSize: 20,
     });
+
+    const router = useRouter();
 
     const pagination = () => {
       if (state.nextPage) {
@@ -39,9 +44,15 @@ export default {
       }
     };
 
+    const launchDetails = (launch) => {
+      router.push({
+        path: `/launches/${launch.id}`,
+      });
+    };
+
     pagination();
 
-    return { ...toRefs(state), pagination };
+    return { ...toRefs(state), pagination, launchDetails };
   },
 };
 </script>
