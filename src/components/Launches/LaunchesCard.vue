@@ -1,5 +1,8 @@
 <template>
-  <div class="launch-card">
+  <div
+    class="launch-card"
+    v-observe-visibility="isLastItem ? visibilityChanged : false"
+  >
     <div class="launch-card__container">
       <div class="launch-card__title-status-container">
         <p class="launch-card__name">{{ launch?.name }}</p>
@@ -22,6 +25,7 @@
 <script>
 import StatusComponent from "../StatusComponent.vue";
 import dayjs from "dayjs";
+import { computed } from "vue";
 export default {
   components: { StatusComponent },
   name: "LaunchesCard",
@@ -30,13 +34,23 @@ export default {
       type: Object,
       required: true,
     },
+    lastLaunch: {
+      type: Object,
+      required: true,
+    },
   },
-  setup(props) {
+  setup(props, context) {
     const localizedFormat = require("dayjs/plugin/localizedFormat");
     var relativeTime = require("dayjs/plugin/relativeTime");
     dayjs.extend(localizedFormat);
     dayjs.extend(relativeTime);
-    return { props, dayjs };
+    const isLastItem = computed(
+      () => props?.launch?.id === props?.lastLaunch?.id
+    );
+    const visibilityChanged = (visible) => {
+      visible && context.emit("last-item-visible");
+    };
+    return { props, dayjs, isLastItem, visibilityChanged };
   },
 };
 </script>

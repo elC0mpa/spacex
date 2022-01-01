@@ -4,6 +4,8 @@
       v-for="(launch, index) in launches"
       :key="index"
       :launch="launch"
+      :last-launch="launches[launches.length - 4]"
+      @last-item-visible="pagination"
     ></launches-card>
   </div>
 </template>
@@ -23,16 +25,23 @@ export default {
       nextPage: 1,
       pageSize: 20,
     });
-    latestLaunchesInfo(state.nextPage, state.pageSize)
-      .then((data) => {
-        state.nextPage = data.nextPage;
-        state.launches = data.docs;
-      })
-      .catch((error) => {
-        console.log("Next launch error: ", error);
-      });
 
-    return { ...toRefs(state) };
+    const pagination = () => {
+      if (state.nextPage) {
+        latestLaunchesInfo(state.nextPage, state.pageSize)
+          .then((data) => {
+            state.nextPage = data.nextPage;
+            state.launches = [...state.launches, ...data.docs];
+          })
+          .catch((error) => {
+            console.log("Next launch error: ", error);
+          });
+      }
+    };
+
+    pagination();
+
+    return { ...toRefs(state), pagination };
   },
 };
 </script>
