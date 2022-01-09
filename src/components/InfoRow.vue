@@ -31,14 +31,15 @@ export default {
   &__container {
     display: flex;
     justify-content: space-between;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid lightgray;
+    margin-top: 7px;
   }
   &__property {
     font-size: 2rem;
     line-height: 3.5rem;
+    font-weight: bold;
   }
   &__value {
-    font-weight: bold;
     font-size: 2rem;
     line-height: 3.5rem;
   }

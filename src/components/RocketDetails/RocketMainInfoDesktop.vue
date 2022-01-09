@@ -93,6 +93,10 @@ export default {
 
 <style lang="scss" scoped>
 .rocket-main-info-desktop {
+  > div {
+    @include info-card;
+    align-self: flex-start;
+  }
   display: flex;
   justify-content: space-between;
   &__first-column,

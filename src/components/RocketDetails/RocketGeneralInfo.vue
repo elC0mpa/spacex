@@ -37,6 +37,8 @@ export default {
 
 <style lang="scss" scoped>
 .rocket-general-info {
+  @include info-card;
+  align-self: flex-start;
   &__name-status-container {
     display: flex;
     justify-content: space-between;

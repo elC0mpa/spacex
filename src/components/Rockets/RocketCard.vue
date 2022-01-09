@@ -51,18 +51,23 @@ export default {
   }
   &__name {
     @include main-text;
+    color: white;
     position: absolute;
     transform: translateY(100%);
     opacity: 0;
     bottom: 25px;
     transition: all 0.5s;
+    background: transparentize($star-command-blue, 0.8);
+    border-radius: 10px;
+    border: 1px solid $star-command-blue;
+    padding: 10px;
   }
   &:hover {
     opacity: 1;
     transform: translateX(-3px) scale(1.05) rotateY(15deg);
     box-shadow: 0 8px 16px 3px rgba(#000, 0.6);
     .rocket-card__name {
-      transform: translateY(0px);
+      transform: translateY(-10px);
       opacity: 1;
     }
     .status-component {

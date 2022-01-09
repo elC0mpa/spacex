@@ -26,3 +26,13 @@
   color: $star-command-blue;
   font-weight: bold;
 }
+
+@mixin info-card {
+  background-color: aliceblue;
+  padding: 15px;
+  border-radius: 10px;
+  transition: outline 0.2s;
+  &:hover {
+    outline: 2px solid $star-command-blue;
+  }
+}
