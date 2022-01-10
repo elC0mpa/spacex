@@ -71,6 +71,7 @@ export default {
   backdrop-filter: blur(20px);
   &:hover {
     opacity: 1;
+    outline: 2px solid $star-command-blue;
   }
   &__container {
     position: relative;

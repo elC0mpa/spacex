@@ -64,7 +64,7 @@ export default {
   }
   &:hover {
     opacity: 1;
-    transform: translateX(-3px) scale(1.05) rotateY(15deg);
+    outline: 2px solid $star-command-blue;
     box-shadow: 0 8px 16px 3px rgba(#000, 0.6);
     .rocket-card__name {
       transform: translateY(-10px);

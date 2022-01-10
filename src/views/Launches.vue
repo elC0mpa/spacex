@@ -62,6 +62,7 @@ export default {
   overflow-y: scroll;
   overflow-x: hidden;
   height: 100%;
+  padding: 3px;
   &::-webkit-scrollbar {
     background: transparent;
   }
