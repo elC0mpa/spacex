@@ -1,9 +1,9 @@
 <template>
   <div class="rocket-details">
     <div class="rocket-details__general-info">
-      <rocket-images
+      <images-collection
         :images="isLoading ? [] : rocket.flickr_images"
-      ></rocket-images>
+      ></images-collection>
       <rocket-general-info :rocket="rocket"></rocket-general-info>
     </div>
     <rocket-main-info :rocket="isLoading ? {} : rocket"></rocket-main-info>
@@ -14,14 +14,14 @@
 import { rocketDetails } from "@/composables/api";
 import { useRoute } from "vue-router";
 import { reactive, toRefs } from "@vue/reactivity";
-import RocketImages from "@/components/RocketDetails/RocketImages.vue";
+import ImagesCollection from "@/components/ImagesCollection.vue";
 import RocketGeneralInfo from "@/components/RocketDetails/RocketGeneralInfo.vue";
 import RocketMainInfo from "@/components/RocketDetails/RocketMainInfoDesktop.vue";
 
 export default {
   name: "RocketDetails",
   components: {
-    RocketImages,
+    ImagesCollection,
     RocketGeneralInfo,
     RocketMainInfo,
   },

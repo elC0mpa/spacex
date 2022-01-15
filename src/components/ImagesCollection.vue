@@ -16,7 +16,7 @@
 <script>
 import { reactive, toRefs } from "@vue/reactivity";
 export default {
-  name: "RocketImages",
+  name: "ImagesCollection",
   props: {
     images: {
       type: Array,

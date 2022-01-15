@@ -33,6 +33,7 @@ export default {
     justify-content: space-between;
     border-bottom: 2px solid lightgray;
     margin-top: 7px;
+    padding: 8px 0;
   }
   &__property {
     font-size: 2rem;
