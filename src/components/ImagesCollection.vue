@@ -1,13 +1,16 @@
 <template>
-  <div class="rocket-images">
-    <img class="rocket-images__selected-image" :src="images[selectedImage]" />
-    <div class="rocket-images__images-container">
+  <div class="images-collection">
+    <img
+      class="images-collection__selected-image"
+      :src="images[selectedImage]"
+    />
+    <div class="images-collection__images-container">
       <img
         v-for="(image, index) in images"
         :key="index"
         :src="image"
         :class="{ 'bordered-image': index === selectedImage }"
-        @click="selectedImage = index"
+        @click="imageClicked(index)"
       />
     </div>
   </div>
@@ -23,17 +26,21 @@ export default {
       required: true,
     },
   },
-  setup(props) {
+  setup(props, context) {
     const state = reactive({
       selectedImage: 0,
     });
-    return { ...toRefs(state), props };
+    const imageClicked = (index) => {
+      state.selectedImage = index;
+      context.emit("image-changed", index);
+    };
+    return { ...toRefs(state), props, imageClicked };
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.rocket-images {
+.images-collection {
   display: flex;
   flex-direction: column;
   &__selected-image {

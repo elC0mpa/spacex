@@ -1,10 +1,12 @@
 <template>
   <div class="launch-details">
-    <div class="launch-details__general-info">
-      <images-collection
-        :images="isLoading ? [] : launch.links.flickr.original"
-      ></images-collection>
-    </div>
+    <launch-general-info :launch="launch" />
+    <images-collection
+      class="launch-details__launch-images"
+      v-if="launch?.links.flickr.original.length"
+      :images="isLoading ? [] : launch.links.flickr.original"
+    ></images-collection>
+    <launch-ships-info :launch="launch"></launch-ships-info>
     <iframe
       class="launch-details__youtube-player"
       allowfullscreen="true"
@@ -19,11 +21,15 @@ import { launchDetails } from "@/composables/api";
 import { useRoute } from "vue-router";
 import { reactive, toRefs } from "@vue/reactivity";
 import ImagesCollection from "@/components/ImagesCollection.vue";
+import LaunchGeneralInfo from "@/components/LaunchDetails/LaunchGeneralInfo.vue";
+import LaunchShipsInfo from "@/components/LaunchDetails/LaunchShipsInfo.vue";
 
 export default {
   name: "LaunchDetails",
   components: {
     ImagesCollection,
+    LaunchGeneralInfo,
+    LaunchShipsInfo,
   },
   setup() {
     const route = useRoute();
@@ -48,11 +54,13 @@ export default {
 
 <style lang="scss">
 .launch-details {
-  &__general-info {
-    display: flex;
-    justify-content: space-between;
-    > * {
-      flex: 0 0 45%;
+  &__launch-images {
+    .images-collection {
+      margin-bottom: 2rem;
+      &__selected-image {
+        height: 680px;
+        border-radius: 10px;
+      }
     }
     margin-bottom: 2rem;
   }
