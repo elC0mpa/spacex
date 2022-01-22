@@ -36,7 +36,7 @@
       :click-to-close="true"
       :esc-to-close="true"
     >
-      Test comntent
+      <launch-pad-details :launchpad="launch?.launchpad" />
     </vue-final-modal>
   </div>
 </template>
@@ -45,9 +45,10 @@
 import StatusComponent from "../StatusComponent.vue";
 import dayjs from "dayjs";
 import { reactive, toRefs } from "vue";
+import LaunchPadDetails from "./LaunchPadDetails.vue";
 
 export default {
-  components: { StatusComponent },
+  components: { StatusComponent, LaunchPadDetails },
   name: "LaunchGeneralInfo",
   props: {
     launch: {

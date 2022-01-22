@@ -12,6 +12,7 @@
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
     "dayjs": "^1.10.7",
+    "leaflet": "^1.7.1",
     "vue": "^3.0.0",
     "vue-final-modal": "^3.4.0",
     "vue-observe-visibility": "^1.0.0",
