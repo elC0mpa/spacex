@@ -21,6 +21,34 @@
   }
 }
 
+@mixin responsive($breakpoint) {
+  @if $breakpoint == smallest-bp {
+    @media (max-width: 640px) {
+      @content;
+    }
+  }
+  @if $breakpoint == small-bp {
+    @media (max-width: 768px) {
+      @content;
+    }
+  }
+  @if $breakpoint == medium-bp {
+    @media (max-width: 1024px) {
+      @content;
+    }
+  }
+  @if $breakpoint == large-bp {
+    @media (max-width: 1507px) {
+      @content;
+    }
+  }
+  @if $breakpoint == largest-bp {
+    @media (max-width: 1750px) {
+      @content;
+    }
+  }
+}
+
 @mixin main-text {
   font-size: 5rem;
   color: $star-command-blue;

@@ -44,7 +44,7 @@
 <script>
 import StatusComponent from "../StatusComponent.vue";
 import dayjs from "dayjs";
-import { reactive, toRefs } from "vue";
+import { reactive, toRefs, watch } from "vue";
 import LaunchPadDetails from "./LaunchPadDetails.vue";
 
 export default {
@@ -64,6 +64,12 @@ export default {
     const state = reactive({
       showLaunchpadDetails: false,
     });
+    watch(
+      () => state.showLaunchpadDetails,
+      (actualValue) => {
+        actualValue && window.dispatchEvent(new Event("resize"));
+      }
+    );
     return { props, dayjs, ...toRefs(state) };
   },
 };

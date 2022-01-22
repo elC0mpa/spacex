@@ -58,9 +58,9 @@ export default {
 
 <style lang="scss">
 .home {
-  color: $color-white;
+  color: white;
   &__info-container {
-    background-color: #ffffff10;
+    background-color: #77777710;
     backdrop-filter: blur(12px);
     padding: 3rem;
     border-radius: 2rem;
