@@ -36,3 +36,15 @@
     outline: 2px solid $star-command-blue;
   }
 }
+
+@mixin rocket-cursor {
+  cursor: url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' style='font-size: 24px'><text y='20'>🚀</text></svg>")
+      12 12,
+    auto;
+}
+
+@mixin launchpad-cursor {
+  cursor: url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' style='font-size: 24px'><text y='20'>🎯</text></svg>")
+      12 12,
+    auto;
+}

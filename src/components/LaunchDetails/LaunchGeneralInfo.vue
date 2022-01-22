@@ -10,22 +10,42 @@
         ></status-component>
       </div>
       <p class="launch-general-info__date">
+        📆
         {{ dayjs(launch?.date_utc).format("LLL") }}
         ({{ dayjs(launch?.date_utc).toNow(true) }} ago)
       </p>
-      <p class="launch-general-info__rocket">🚀 {{ launch?.rocket.name }}</p>
+      <p
+        class="launch-general-info__launchpad"
+        @click="showLaunchpadDetails = true"
+      >
+        🎯 {{ launch?.launchpad.full_name }}
+      </p>
+      <router-link
+        class="launch-general-info__rocket"
+        :to="`/rockets/${launch?.rocket.id}`"
+        >🚀 {{ launch?.rocket.name }}</router-link
+      >
       <p class="launch-general-info__details">{{ launch?.details }}</p>
     </div>
     <img
       class="launch-general-info__image"
       :src="launch?.links?.patch?.small"
     />
+    <vue-final-modal
+      v-model="showLaunchpadDetails"
+      :click-to-close="true"
+      :esc-to-close="true"
+    >
+      Test comntent
+    </vue-final-modal>
   </div>
 </template>
 
 <script>
 import StatusComponent from "../StatusComponent.vue";
 import dayjs from "dayjs";
+import { reactive, toRefs } from "vue";
+
 export default {
   components: { StatusComponent },
   name: "LaunchGeneralInfo",
@@ -40,7 +60,10 @@ export default {
     var relativeTime = require("dayjs/plugin/relativeTime");
     dayjs.extend(localizedFormat);
     dayjs.extend(relativeTime);
-    return { props, dayjs };
+    const state = reactive({
+      showLaunchpadDetails: false,
+    });
+    return { props, dayjs, ...toRefs(state) };
   },
 };
 </script>
@@ -67,12 +90,20 @@ export default {
     @include main-text;
   }
   &__details {
+    margin-top: 1rem;
     font-size: 2rem;
   }
   &__date,
-  &__rocket {
-    font-size: 1.5rem;
+  &__rocket,
+  &__launchpad {
+    font-size: 2rem;
     margin-bottom: 1rem;
+  }
+  &__rocket {
+    @include rocket-cursor;
+  }
+  &__launchpad {
+    @include launchpad-cursor;
   }
   &__image {
     width: 150px;
