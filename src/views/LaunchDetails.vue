@@ -60,15 +60,33 @@ export default {
       &__selected-image {
         height: 680px;
         border-radius: 10px;
+        @include responsive(medium-bp) {
+          height: 45rem;
+        }
+        @include responsive(small-bp) {
+          height: 35rem;
+        }
+        @include responsive(smallest-bp) {
+          height: 25rem;
+        }
       }
     }
     margin-bottom: 2rem;
   }
   &__youtube-player {
     width: 100%;
-    height: 680px;
+    height: 68rem;
     border-radius: 10px;
     border: 2px solid $star-command-blue;
+    @include responsive(medium-bp) {
+      height: 45rem;
+    }
+    @include responsive(small-bp) {
+      height: 35rem;
+    }
+    @include responsive(smallest-bp) {
+      height: 25rem;
+    }
   }
 }
 </style>

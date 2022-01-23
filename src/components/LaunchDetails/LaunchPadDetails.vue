@@ -62,6 +62,13 @@ export default {
   transform: translateX(-50%) translateY(-50%);
   padding: 1.5rem;
   border-radius: 1rem;
+  @include responsive(medium-bp) {
+    width: 90%;
+    top: 10rem;
+    transform: translateX(-50%);
+    max-height: calc(100% - 10rem);
+    overflow-y: scroll;
+  }
   &__name {
     @include main-text;
     font-size: 4rem;
@@ -71,6 +78,9 @@ export default {
     width: 100%;
     height: 40rem;
     outline: 2px solid $star-command-blue;
+    @include responsive(small-bp) {
+      height: 30rem;
+    }
   }
 }
 </style>

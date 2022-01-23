@@ -31,10 +31,24 @@ export default {
 .ship-general-info {
   @include info-card;
   align-self: flex-start;
+  @include responsive(medium-bp) {
+    margin-top: 1rem;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @include responsive(small-bp) {
+    margin-top: 1rem;
+    width: 100%;
+  }
   &__name-status-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @include responsive(smallest-bp) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
   &__name {
     @include main-text;

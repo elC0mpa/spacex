@@ -53,6 +53,12 @@
   font-size: 5rem;
   color: $star-command-blue;
   font-weight: bold;
+  @include responsive(medium-bp) {
+    font-size: 4rem;
+  }
+  @include responsive(small-bp) {
+    font-size: 3rem;
+  }
 }
 
 @mixin info-card {

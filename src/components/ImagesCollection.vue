@@ -47,6 +47,7 @@ export default {
     height: 30rem;
     width: 100%;
     box-shadow: 1px 1px 20px #000;
+    border-radius: 1rem;
   }
   &__images-container {
     margin-top: 2rem;
@@ -54,11 +55,18 @@ export default {
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     column-gap: 25px;
     row-gap: 10px;
+    @include responsive(smallest-bp) {
+      grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+      column-gap: 1rem;
+    }
     img {
       height: 7rem;
-      width: 10rem;
+      width: 100%;
       &.bordered-image {
         border: 4px solid $star-command-blue;
+      }
+      @include responsive(smallest-bp) {
+        height: 5rem;
       }
     }
   }

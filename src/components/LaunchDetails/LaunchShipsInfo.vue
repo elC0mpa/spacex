@@ -55,6 +55,22 @@ export default {
     flex: 0 0 45%;
   }
   margin-bottom: 2rem;
+  @include responsive(medium-bp) {
+    flex-direction: column;
+  }
+  .images-collection {
+    &__selected-image {
+      @include responsive(medium-bp) {
+        height: 45rem;
+      }
+      @include responsive(small-bp) {
+        height: 35rem;
+      }
+      @include responsive(smallest-bp) {
+        height: 25rem;
+      }
+    }
+  }
 }
 </style>
 

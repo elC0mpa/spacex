@@ -83,15 +83,26 @@ export default {
   min-height: 19rem;
   margin-bottom: 2rem;
   padding: 2rem;
+  position: relative;
   &__container {
     position: relative;
     margin-right: 36px;
     width: 80%;
+    @include responsive(smallest-bp) {
+      margin-right: 0;
+      width: 100%;
+    }
   }
   &__title-status-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @include responsive(small-bp) {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      width: calc(100% - 90px);
+    }
   }
   &__name {
     @include main-text;
@@ -115,6 +126,13 @@ export default {
   &__image {
     width: 150px;
     align-self: center;
+    @include responsive(small-bp) {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      height: 75px;
+      width: 75px;
+    }
   }
 }
 </style>
