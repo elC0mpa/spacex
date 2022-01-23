@@ -49,5 +49,14 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
   gap: 5rem;
+  @include responsive(largest-bp) {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  }
+  @include responsive(medium-bp) {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  }
+  @include responsive(small-bp) {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
 }
 </style>

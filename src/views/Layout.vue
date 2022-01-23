@@ -46,6 +46,12 @@ export default {
   @include responsive(large-bp) {
     padding: 10rem 10%;
   }
+  @include responsive(medium-bp) {
+    padding: 10rem 5%;
+  }
+  @include responsive(small-bp) {
+    padding: 10rem 2%;
+  }
   &.is-home {
     background-image: url("../assets/images/background-home.jpg");
     background-position: top;
