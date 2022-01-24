@@ -48,13 +48,14 @@ export default {
       .catch((error) => {
         console.log("Rocket error: ", error);
       });
+    const updateWidth = () => {
+      state.actualWidth = document.documentElement.clientWidth;
+    };
     onMounted(() => {
-      window.addEventListener("resize", function () {
-        state.actualWidth = document.documentElement.clientWidth;
-      });
+      window.addEventListener("resize", updateWidth);
     });
     onBeforeUnmount(() => {
-      window.removeEventListener("resize");
+      window.removeEventListener("resize", updateWidth);
     });
 
     return { ...toRefs(state) };
