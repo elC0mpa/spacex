@@ -60,6 +60,12 @@ export default {
     }
     &--text {
       font-size: 3rem;
+      @include responsive(medium-bp) {
+        font-size: 2.5rem;
+      }
+      @include responsive(small-bp) {
+        font-size: 2rem;
+      }
     }
   }
 }

@@ -21,7 +21,7 @@
 
 <script>
 // @ is an alias to /src
-import TimeLeft from "@/components/TimeLeft";
+import TimeLeft from "@/components/TimeLeft.vue";
 import { nextLaunchInfo } from "@/composables/api";
 import { reactive, toRefs } from "@vue/reactivity";
 import VueCountDown from "@chenfengyuan/vue-countdown";
@@ -68,11 +68,26 @@ export default {
     top: 40%;
     left: 50%;
     transform: translateX(-50%);
+    @include responsive(medium-bp) {
+      width: 100%;
+      max-width: 50rem;
+      top: 15rem;
+      outline: 2px solid $star-command-blue;
+    }
     &--header {
       font-size: 5rem;
+      @include responsive(medium-bp) {
+        font-size: 4rem;
+      }
+      @include responsive(small-bp) {
+        font-size: 3rem;
+      }
       span {
         color: $star-command-blue;
         font-weight: bold;
+        @include responsive(medium-bp) {
+          display: block;
+        }
       }
     }
   }

@@ -56,6 +56,9 @@ export default {
     background-image: url("../assets/images/background-home.jpg");
     background-position: top;
     height: 100vh;
+    @include responsive(large-bp) {
+      background-position: right center;
+    }
   }
   &.is-rockets {
     background-image: url("../assets/images/background-rockets.jpeg");
