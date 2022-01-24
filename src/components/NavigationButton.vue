@@ -5,6 +5,7 @@
       class="navigation__checkbox"
       ref="button"
       id="navi-toggle"
+      @click="buttonClicked"
     />
 
     <label for="navi-toggle" class="navigation__button">
@@ -13,7 +14,7 @@
 
     <div class="navigation__background">&nbsp;</div>
 
-    <nav class="navigation__nav">
+    <nav class="navigation__nav" v-show="buttonPressed">
       <ul class="navigation__list">
         <li
           class="navigation__item"
@@ -30,7 +31,7 @@
 </template>
 
 <script>
-import { ref } from "@vue/reactivity";
+import { reactive, ref, toRefs } from "@vue/reactivity";
 import { useRouter } from "vue-router";
 export default {
   name: "NavigationButton",
@@ -43,13 +44,19 @@ export default {
   setup(props) {
     const button = ref(null);
     const router = useRouter();
+    const state = reactive({
+      buttonPressed: false,
+    });
     const navigate = (item) => {
       router.push({
         path: item.to,
       });
       button.value.click();
     };
-    return { props, navigate, button };
+    const buttonClicked = () => {
+      state.buttonPressed = !state.buttonPressed;
+    };
+    return { props, navigate, button, ...toRefs(state), buttonClicked };
   },
 };
 </script>
