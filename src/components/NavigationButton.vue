@@ -48,10 +48,14 @@ export default {
       buttonPressed: false,
     });
     const navigate = (item) => {
-      router.push({
-        path: item.to,
-      });
       button.value.click();
+      if (item.external) {
+        window.open(item.to);
+      } else {
+        router.push({
+          path: item.to,
+        });
+      }
     };
     const buttonClicked = () => {
       state.buttonPressed = !state.buttonPressed;

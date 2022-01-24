@@ -22,7 +22,7 @@ import ImagesCollection from "@/components/ImagesCollection.vue";
 import RocketGeneralInfo from "@/components/RocketDetails/RocketGeneralInfo.vue";
 import RocketMainInfoDesktop from "@/components/RocketDetails/RocketMainInfoDesktop.vue";
 import RocketMainInfo from "@/components/RocketDetails/RocketMainInfo.vue";
-import { onMounted } from "vue";
+import { onBeforeUnmount, onMounted } from "vue";
 
 export default {
   name: "RocketDetails",
@@ -52,6 +52,9 @@ export default {
       window.addEventListener("resize", function () {
         state.actualWidth = document.documentElement.clientWidth;
       });
+    });
+    onBeforeUnmount(() => {
+      window.removeEventListener("resize");
     });
 
     return { ...toRefs(state) };

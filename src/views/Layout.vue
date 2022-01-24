@@ -13,6 +13,11 @@
         { label: 'Home', to: '/' },
         { label: 'Launches', to: '/launches' },
         { label: 'Rockets', to: '/rockets' },
+        {
+          label: 'Repo',
+          to: 'https://github.com/elC0mpa/spacex',
+          external: true,
+        },
       ]"
     ></navigation-button>
     <router-view></router-view>
