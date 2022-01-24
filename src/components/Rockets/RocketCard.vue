@@ -39,6 +39,22 @@ export default {
   opacity: 0.95;
   transform-origin: center top;
   transform-style: preserve-3d;
+  @include same-hover-tablet {
+    opacity: 1;
+    outline: 2px solid $star-command-blue;
+    box-shadow: 0 8px 16px 3px rgba(#000, 0.6);
+    .rocket-card__name {
+      transform: translateY(-10px);
+      opacity: 1;
+    }
+    .status-component {
+      transform: translateY(10px);
+      opacity: 1;
+    }
+  }
+  @include responsive(small-bp) {
+    height: 25rem;
+  }
   .status-component {
     position: absolute;
     transform: translateY(-100%);
@@ -61,19 +77,6 @@ export default {
     border-radius: 10px;
     border: 1px solid $star-command-blue;
     padding: 10px;
-  }
-  &:hover {
-    opacity: 1;
-    outline: 2px solid $star-command-blue;
-    box-shadow: 0 8px 16px 3px rgba(#000, 0.6);
-    .rocket-card__name {
-      transform: translateY(-10px);
-      opacity: 1;
-    }
-    .status-component {
-      transform: translateY(10px);
-      opacity: 1;
-    }
   }
 }
 </style>

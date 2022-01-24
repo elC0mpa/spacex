@@ -80,12 +80,12 @@ export default {
     text-align: center;
     cursor: pointer;
 
-    @include respond(tab-port) {
+    @include responsive(medium-bp) {
       top: 4rem;
       right: 4rem;
     }
 
-    @include respond(phone) {
+    @include responsive(small-bp) {
       top: 3rem;
       right: 3rem;
     }
@@ -105,12 +105,12 @@ export default {
     z-index: 1000;
     transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1);
 
-    @include respond(tab-port) {
+    @include responsive(medium-bp) {
       top: 4.5rem;
       right: 4.5rem;
     }
 
-    @include respond(phone) {
+    @include responsive(small-bp) {
       top: 3.5rem;
       right: 3.5rem;
     }

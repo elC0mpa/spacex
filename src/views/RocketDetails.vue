@@ -6,6 +6,10 @@
       ></images-collection>
       <rocket-general-info :rocket="rocket"></rocket-general-info>
     </div>
+    <rocket-main-info-desktop
+      v-if="actualWidth >= 1024"
+      :rocket="isLoading ? {} : rocket"
+    ></rocket-main-info-desktop>
     <rocket-main-info :rocket="isLoading ? {} : rocket"></rocket-main-info>
   </div>
 </template>
@@ -16,13 +20,16 @@ import { useRoute } from "vue-router";
 import { reactive, toRefs } from "@vue/reactivity";
 import ImagesCollection from "@/components/ImagesCollection.vue";
 import RocketGeneralInfo from "@/components/RocketDetails/RocketGeneralInfo.vue";
-import RocketMainInfo from "@/components/RocketDetails/RocketMainInfoDesktop.vue";
+import RocketMainInfoDesktop from "@/components/RocketDetails/RocketMainInfoDesktop.vue";
+import RocketMainInfo from "@/components/RocketDetails/RocketMainInfo.vue";
+import { onMounted } from "vue";
 
 export default {
   name: "RocketDetails",
   components: {
     ImagesCollection,
     RocketGeneralInfo,
+    RocketMainInfoDesktop,
     RocketMainInfo,
   },
   setup() {
@@ -30,6 +37,7 @@ export default {
     const state = reactive({
       rocket: undefined,
       isLoading: true,
+      actualWidth: document.documentElement.clientWidth,
     });
     rocketDetails(route.params.id)
       .then((data) => {
@@ -40,6 +48,11 @@ export default {
       .catch((error) => {
         console.log("Rocket error: ", error);
       });
+    onMounted(() => {
+      window.addEventListener("resize", function () {
+        state.actualWidth = document.documentElement.clientWidth;
+      });
+    });
 
     return { ...toRefs(state) };
   },
@@ -55,6 +68,22 @@ export default {
       flex: 0 0 45%;
     }
     margin-bottom: 2rem;
+    @include responsive(medium-bp) {
+      flex-direction: column-reverse;
+    }
+    .images-collection {
+      &__selected-image {
+        @include responsive(medium-bp) {
+          height: 45rem;
+        }
+        @include responsive(small-bp) {
+          height: 35rem;
+        }
+        @include responsive(smallest-bp) {
+          height: 25rem;
+        }
+      }
+    }
   }
 }
 </style>

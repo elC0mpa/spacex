@@ -53,5 +53,8 @@ export default {
     line-height: 3.5rem;
     text-align: justify;
   }
+  @include responsive(medium-bp) {
+    margin-bottom: 2rem;
+  }
 }
 </style>

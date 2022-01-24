@@ -53,7 +53,7 @@ export default {
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   }
   @include responsive(medium-bp) {
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
   @include responsive(small-bp) {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
