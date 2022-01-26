@@ -29,7 +29,7 @@ export default {
   overflow: hidden;
   display: flex;
   justify-content: center;
-  background-color: #ffffff10;
+  background-color: #00000040;
   backdrop-filter: blur(20px);
   padding: 3rem;
   border-radius: 2rem;
@@ -39,38 +39,30 @@ export default {
   opacity: 0.95;
   transform-origin: center top;
   transform-style: preserve-3d;
-  @include same-hover-tablet {
+  outline: 2px solid $star-command-blue;
+  box-shadow: 0 8px 16px 3px rgba(#000, 0.6);
+  &:hover {
     opacity: 1;
-    outline: 2px solid $star-command-blue;
-    box-shadow: 0 8px 16px 3px rgba(#000, 0.6);
-    .rocket-card__name {
-      transform: translateY(-10px);
-      opacity: 1;
-    }
-    .status-component {
-      transform: translateY(10px);
-      opacity: 1;
-    }
+  }
+  .status-component {
+    transform: translateY(10px);
+    opacity: 1;
+    position: absolute;
   }
   @include responsive(small-bp) {
     height: 25rem;
-  }
-  .status-component {
-    position: absolute;
-    transform: translateY(-100%);
-    opacity: 0;
-    transition: all 0.5s;
   }
   &__image {
     width: 80%;
     min-height: 100%;
   }
   &__name {
+    transform: translateY(-10px);
+    opacity: 1;
+    position: absolute;
     @include main-text;
     color: white;
     position: absolute;
-    transform: translateY(100%);
-    opacity: 0;
     bottom: 25px;
     transition: all 0.5s;
     background: transparentize($star-command-blue, 0.8);

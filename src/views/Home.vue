@@ -60,7 +60,7 @@ export default {
 .home {
   color: white;
   &__info-container {
-    background-color: #77777710;
+    background-color: #00000040;
     backdrop-filter: blur(12px);
     padding: 3rem;
     border-radius: 2rem;

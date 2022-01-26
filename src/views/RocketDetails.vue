@@ -10,7 +10,10 @@
       v-if="actualWidth >= 1024"
       :rocket="isLoading ? {} : rocket"
     ></rocket-main-info-desktop>
-    <rocket-main-info :rocket="isLoading ? {} : rocket"></rocket-main-info>
+    <rocket-main-info
+      v-else
+      :rocket="isLoading ? {} : rocket"
+    ></rocket-main-info>
   </div>
 </template>
 

@@ -61,7 +61,7 @@ export default {
   justify-content: space-between;
   color: white;
   min-height: 19rem;
-  background-color: #ffffff10;
+  background-color: #00000040;
   margin-bottom: 2rem;
   padding: 2rem;
   border-radius: 2rem;
