@@ -58,7 +58,7 @@ export default {
     padding: 10rem 2%;
   }
   &.is-home {
-    background-image: url("../assets/images/background-home.jpg");
+    background-image: url("../assets/images/background-home.webp");
     background-position: top;
     height: 100vh;
     @include responsive(large-bp) {
@@ -66,7 +66,7 @@ export default {
     }
   }
   &.is-rockets {
-    background-image: url("../assets/images/background-rockets.jpeg");
+    background-image: url("../assets/images/background-rockets.webp");
     background-position: center;
     min-height: 100vh;
   }
@@ -76,7 +76,7 @@ export default {
     min-height: 100vh;
   }
   &.is-launches {
-    background-image: url("../assets/images/background-launches.jpeg");
+    background-image: url("../assets/images/background-launches.webp");
     background-position: center;
     height: 100vh;
     overflow: hidden;
