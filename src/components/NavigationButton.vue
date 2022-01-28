@@ -14,7 +14,7 @@
 
     <div class="navigation__background">&nbsp;</div>
 
-    <nav class="navigation__nav" v-show="buttonPressed">
+    <nav class="navigation__nav">
       <ul class="navigation__list">
         <li
           class="navigation__item"
@@ -144,6 +144,7 @@ export default {
 
   &__item {
     margin: 1rem;
+    visibility: hidden;
   }
 
   &__link {
@@ -156,12 +157,6 @@ export default {
       color: $color-white;
       text-decoration: none;
       text-transform: uppercase;
-      background-image: linear-gradient(
-        120deg,
-        transparent 0%,
-        transparent 50%,
-        $color-white 50%
-      );
       background-size: 220%;
       transition: all 0.4s;
 
@@ -174,6 +169,7 @@ export default {
     &:hover,
     &:active {
       background-position: 100%;
+      background: white;
       color: $color-primary;
       transform: translateX(1rem);
     }
@@ -187,6 +183,9 @@ export default {
   &__checkbox:checked ~ &__nav {
     opacity: 1;
     width: 100%;
+    > ul > li {
+      visibility: visible;
+    }
   }
 
   //ICON
