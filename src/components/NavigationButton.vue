@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { reactive, ref, toRefs } from "@vue/reactivity";
+import { ref } from "@vue/reactivity";
 import { useRouter } from "vue-router";
 export default {
   name: "NavigationButton",
@@ -44,9 +44,6 @@ export default {
   setup(props) {
     const button = ref(null);
     const router = useRouter();
-    const state = reactive({
-      buttonPressed: false,
-    });
     const navigate = (item) => {
       button.value.click();
       if (item.external) {
@@ -57,10 +54,7 @@ export default {
         });
       }
     };
-    const buttonClicked = () => {
-      state.buttonPressed = !state.buttonPressed;
-    };
-    return { props, navigate, button, ...toRefs(state), buttonClicked };
+    return { props, navigate, button };
   },
 };
 </script>
