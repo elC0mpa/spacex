@@ -39,3 +39,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           cname: spacex.elc0mpa.me
+        env:
+          VUE_APP_GTAG_ID: ${{ secrets.VUE_APP_GTAG_ID }}
