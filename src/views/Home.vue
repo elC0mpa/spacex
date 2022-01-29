@@ -2,7 +2,7 @@
   <div class="home">
     <div class="home__info-container" v-if="!isLoading">
       <p class="home__info-container--header">
-        Next launch: <span>{{ name }}</span>
+        Next launch: <span>{{ name }}</span> ENV: {{ env }}
       </p>
       <vue-count-down
         :time="timeToLaunch"
@@ -39,6 +39,7 @@ export default {
       name: "",
       timeToLaunch: 0,
       isLoading: true,
+      env: process.env.VUE_APP_GTAG_ID,
     });
 
     nextLaunchInfo()
