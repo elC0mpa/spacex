@@ -27,7 +27,6 @@ export default {
     rocketsInfo()
       .then((data) => {
         state.rockets = [...data];
-        console.log(state.rockets);
       })
       .catch((error) => {
         console.log("Next launch error: ", error);

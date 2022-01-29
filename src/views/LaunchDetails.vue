@@ -41,7 +41,6 @@ export default {
       .then((data) => {
         state.launch = data;
         state.isLoading = false;
-        console.log(state.launch);
       })
       .catch((error) => {
         console.log("Launch error: ", error);
