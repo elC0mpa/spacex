@@ -18,7 +18,7 @@
         class="launch-general-info__launchpad"
         @click="showLaunchpadDetails = true"
       >
-        🎯 {{ launch?.launchpad.full_name }}
+        📍 {{ launch?.launchpad.full_name }}
       </p>
       <router-link
         class="launch-general-info__rocket"
@@ -121,7 +121,8 @@ export default {
     @include rocket-cursor;
   }
   &__launchpad {
-    @include launchpad-cursor;
+    cursor: pointer;
+    text-decoration: solid underline black;
   }
   &__image {
     width: 150px;
