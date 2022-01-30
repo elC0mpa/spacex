@@ -4,7 +4,8 @@ on:
   push:
     branches:
       - main
-  pull_request:
+env:
+  VUE_APP_GTAG_ID: ${{ secrets.VUE_APP_GTAG_ID }}
 
 jobs:
   deploy:

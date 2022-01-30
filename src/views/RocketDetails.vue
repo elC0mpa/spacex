@@ -46,7 +46,6 @@ export default {
       .then((data) => {
         state.rocket = data;
         state.isLoading = false;
-        console.log(state.rocket);
       })
       .catch((error) => {
         console.log("Rocket error: ", error);
