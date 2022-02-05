@@ -6,7 +6,10 @@
       v-if="launch?.links.flickr.original.length"
       :images="isLoading ? [] : launch.links.flickr.original"
     ></images-collection>
-    <launch-ships-info :launch="launch"></launch-ships-info>
+    <launch-ships-info
+      v-if="launch?.ships.length"
+      :launch="launch"
+    ></launch-ships-info>
     <iframe
       class="launch-details__youtube-player"
       allowfullscreen="true"
