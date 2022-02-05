@@ -72,9 +72,8 @@ export default {
     min-height: 100vh;
   }
   &.is-rocket-details {
-    background: white;
-    background-position: center;
-    min-height: 100vh;
+    background: url("../assets/images/background-rockets.webp") no-repeat center
+      center fixed;
   }
   &.is-launches {
     background-image: url("../assets/images/background-launches.webp");

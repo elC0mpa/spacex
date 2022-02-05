@@ -30,6 +30,7 @@ export default {
 <style lang="scss">
 .ship-general-info {
   @include info-card;
+  background: #00000040;
   align-self: flex-start;
   @include responsive(medium-bp) {
     margin-top: 1rem;

@@ -48,10 +48,12 @@
 }
 
 @mixin info-card {
-  background-color: aliceblue;
+  background-color: #000000b0;
+  backdrop-filter: blur(1.2rem);
   padding: 15px;
   border-radius: 10px;
   transition: outline 0.2s;
+  color: white;
   @include same-hover-tablet {
     outline: 2px solid $star-command-blue;
   }
