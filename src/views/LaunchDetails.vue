@@ -1,6 +1,11 @@
 <template>
   <div class="launch-details">
-    <launch-general-info :launch="launch" />
+    <launches-card
+      :launch="launch"
+      :lastLaunch="{}"
+      :showDetails="true"
+      @show-launchpad-location="showLaunchpadDetails = true"
+    ></launches-card>
     <images-collection
       class="launch-details__launch-images"
       v-if="launch?.links.flickr.original.length"
@@ -16,6 +21,13 @@
       :src="`https://www.youtube.com/embed/${launch?.links?.youtube_id}`"
     >
     </iframe>
+    <vue-final-modal
+      v-model="showLaunchpadDetails"
+      :click-to-close="true"
+      :esc-to-close="true"
+    >
+      <launch-pad-details :launchpad="launch?.launchpad" />
+    </vue-final-modal>
   </div>
 </template>
 
@@ -24,21 +36,24 @@ import { launchDetails } from "@/composables/api";
 import { useRoute } from "vue-router";
 import { reactive, toRefs } from "@vue/reactivity";
 import ImagesCollection from "@/components/ImagesCollection.vue";
-import LaunchGeneralInfo from "@/components/LaunchDetails/LaunchGeneralInfo.vue";
 import LaunchShipsInfo from "@/components/LaunchDetails/LaunchShipsInfo.vue";
+import LaunchesCard from "@/components/Launches/LaunchesCard.vue";
+import LaunchPadDetails from "@/components/LaunchDetails/LaunchPadDetails.vue";
 
 export default {
   name: "LaunchDetails",
   components: {
     ImagesCollection,
-    LaunchGeneralInfo,
     LaunchShipsInfo,
+    LaunchesCard,
+    LaunchPadDetails,
   },
   setup() {
     const route = useRoute();
     const state = reactive({
       launch: undefined,
       isLoading: true,
+      showLaunchpadDetails: false,
     });
     launchDetails(route.params.id)
       .then((data) => {

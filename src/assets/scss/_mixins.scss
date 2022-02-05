@@ -37,7 +37,7 @@
 
 @mixin main-text {
   font-size: 5rem;
-  color: $star-command-blue;
+  color: white;
   font-weight: bold;
   @include responsive(medium-bp) {
     font-size: 4rem;

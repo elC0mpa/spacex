@@ -1,6 +1,9 @@
 <template>
   <div
     class="launch-card"
+    :class="{
+      'show-details': showDetails,
+    }"
     v-observe-visibility="isLastItem ? visibilityChanged : false"
   >
     <div class="launch-card__container">
@@ -13,10 +16,31 @@
         ></status-component>
       </div>
       <p class="launch-card__date">
+        📆
         {{ dayjs(launch?.date_utc).format("LLL") }}
         ({{ dayjs(launch?.date_utc).toNow(true) }} ago)
       </p>
-      <p class="launch-card__details">{{ launch?.details }}</p>
+      <p
+        v-if="showDetails"
+        class="launch-card__launchpad"
+        @click="clickedLaunchpad"
+      >
+        📍 {{ launch?.launchpad.full_name }}
+      </p>
+      <router-link
+        v-if="showDetails"
+        class="launch-card__rocket"
+        :to="`/rockets/${launch?.rocket.id}`"
+        >🚀 {{ launch?.rocket.name }}</router-link
+      >
+      <p
+        class="launch-card__details"
+        :class="{
+          'full-details': showDetails,
+        }"
+      >
+        {{ launch?.details }}
+      </p>
     </div>
     <img class="launch-card__image" :src="launch?.links?.patch?.small" />
   </div>
@@ -38,6 +62,10 @@ export default {
       type: Object,
       required: true,
     },
+    showDetails: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, context) {
     const localizedFormat = require("dayjs/plugin/localizedFormat");
@@ -50,7 +78,11 @@ export default {
     const visibilityChanged = (visible) => {
       visible && context.emit("last-item-visible");
     };
-    return { props, dayjs, isLastItem, visibilityChanged };
+    const clickedLaunchpad = () => {
+      window.dispatchEvent(new Event("resize"));
+      context.emit("show-launchpad-location");
+    };
+    return { props, dayjs, isLastItem, visibilityChanged, clickedLaunchpad };
   },
 };
 </script>
@@ -69,6 +101,10 @@ export default {
   opacity: 0.85;
   transition: all 0.5s;
   backdrop-filter: blur(20px);
+  &.show-details {
+    cursor: default;
+    opacity: 1;
+  }
   @include responsive(small-bp) {
     outline: 2px solid $star-command-blue;
   }
@@ -101,15 +137,34 @@ export default {
   &__details {
     font-size: 2rem;
     overflow: hidden;
+    margin-top: 2rem;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     line-clamp: 3;
     -webkit-box-orient: vertical;
+    &.full-details {
+      text-overflow: initial;
+      display: block;
+    }
   }
-  &__date {
-    font-size: 1.5rem;
+  &__date,
+  &__launchpad,
+  &__rocket {
+    font-size: 2rem;
     margin-bottom: 1rem;
+  }
+  &__rocket {
+    @include rocket-cursor;
+    &:link,
+    &:visited {
+      color: white;
+      text-decoration: solid underline $star-command-blue;
+    }
+  }
+  &__launchpad {
+    cursor: pointer;
+    text-decoration: solid underline $star-command-blue;
   }
   &__image {
     width: 150px;

@@ -6,6 +6,7 @@
       'is-rockets': route.name === 'Rockets',
       'is-rocket-details': route.name === 'RocketDetails',
       'is-launches': route.name === 'Launches',
+      'is-launch-details': route.name === 'LaunchDetails',
     }"
   >
     <navigation-button
@@ -80,6 +81,10 @@ export default {
     background-position: center;
     height: 100vh;
     overflow: hidden;
+  }
+  &.is-launch-details {
+    background: url("../assets/images/background-launches.webp") no-repeat
+      center center fixed;
   }
 }
 </style>
