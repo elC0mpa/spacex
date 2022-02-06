@@ -11,6 +11,17 @@ export const nextLaunchInfo = () => {
   });
 };
 
+export const getLatestLaunch = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const { data } = await axios.get("v5/launches/latest");
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 export const rocketsInfo = () => {
   return new Promise(async (resolve, reject) => {
     try {

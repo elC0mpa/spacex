@@ -2,9 +2,17 @@
   <div class="home">
     <div class="home__info-container" v-if="!isLoading">
       <p class="home__info-container--header">
-        Next launch: <span>{{ name }}</span>
+        {{ latestLaunchId ? "Last launch:" : "Next launch:" }}
+        <span
+          :class="{
+            'link-to-last': latestLaunchId,
+          }"
+          @click="goToLastLaunchDetails"
+          >{{ name }}</span
+        >
       </p>
       <vue-count-down
+        v-if="!latestLaunchId"
         :time="timeToLaunch"
         v-slot="{ days, hours, minutes, seconds }"
       >
@@ -22,11 +30,12 @@
 <script>
 // @ is an alias to /src
 import TimeLeft from "@/components/TimeLeft.vue";
-import { nextLaunchInfo } from "@/composables/api";
+import { nextLaunchInfo, getLatestLaunch } from "@/composables/api";
 import { reactive, toRefs } from "@vue/reactivity";
 import VueCountDown from "@chenfengyuan/vue-countdown";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { useRouter } from "vue-router";
 export default {
   name: "Home",
   components: {
@@ -35,23 +44,41 @@ export default {
   },
   setup() {
     dayjs.extend(relativeTime);
+    const router = useRouter();
     const state = reactive({
       name: "",
       timeToLaunch: 0,
       isLoading: true,
+      latestLaunchId: undefined,
     });
 
     nextLaunchInfo()
       .then((data) => {
         state.name = data.name;
         state.timeToLaunch = dayjs(data.date_local).diff(dayjs());
+        if (state.timeToLaunch <= 60000) {
+          getLatestLaunch().then((dataLatest) => {
+            state.name = dataLatest.name;
+            state.latestLaunchId = dataLatest.id;
+          });
+        }
         state.isLoading = false;
       })
       .catch((error) => {
         console.log("Next launch error: ", error);
       });
 
-    return { ...toRefs(state) };
+    const goToLastLaunchDetails = () => {
+      state.latestLaunchId &&
+        router.push({
+          name: "LaunchDetails",
+          params: {
+            id: state.latestLaunchId,
+          },
+        });
+    };
+
+    return { ...toRefs(state), goToLastLaunchDetails };
   },
 };
 </script>
@@ -87,6 +114,10 @@ export default {
         font-weight: bold;
         @include responsive(medium-bp) {
           display: block;
+        }
+        &.link-to-last {
+          text-decoration: solid underline $star-command-blue;
+          cursor: pointer;
         }
       }
     }
