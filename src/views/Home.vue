@@ -36,6 +36,7 @@ import VueCountDown from "@chenfengyuan/vue-countdown";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { useRouter } from "vue-router";
+import { useMeta } from "vue-meta";
 export default {
   name: "Home",
   components: {
@@ -77,6 +78,11 @@ export default {
           },
         });
     };
+    useMeta({
+      title: "Home",
+      description:
+        "SpaceX designs, manufactures and launches advanced rockets and spacecraft. The company was founded in 2002 to revolutionize space technology, with the ultimate goal of enabling people to live on other planets.",
+    });
 
     return { ...toRefs(state), goToLastLaunchDetails };
   },

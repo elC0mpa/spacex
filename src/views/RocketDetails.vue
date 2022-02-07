@@ -25,7 +25,8 @@ import ImagesCollection from "@/components/ImagesCollection.vue";
 import RocketGeneralInfo from "@/components/RocketDetails/RocketGeneralInfo.vue";
 import RocketMainInfoDesktop from "@/components/RocketDetails/RocketMainInfoDesktop.vue";
 import RocketMainInfo from "@/components/RocketDetails/RocketMainInfo.vue";
-import { onBeforeUnmount, onMounted } from "vue";
+import { onBeforeUnmount, onMounted, watchEffect } from "vue";
+import { useMeta } from "vue-meta";
 
 export default {
   name: "RocketDetails",
@@ -58,6 +59,15 @@ export default {
     });
     onBeforeUnmount(() => {
       window.removeEventListener("resize", updateWidth);
+    });
+
+    const { meta } = useMeta({
+      title: `${state.rocket?.name ?? "Rocket"}`,
+      description: `${state.rocket?.description ?? ""}`,
+    });
+    watchEffect(() => {
+      meta.title = state.rocket?.name;
+      meta.description = state.rocket?.description;
     });
 
     return { ...toRefs(state) };

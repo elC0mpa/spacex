@@ -16,6 +16,7 @@ import { latestLaunchesInfo } from "@/composables/api";
 import { reactive, toRefs } from "vue";
 import LaunchesCard from "@/components/Launches/LaunchesCard.vue";
 import { useRouter } from "vue-router";
+import { useMeta } from "vue-meta";
 export default {
   name: "Launches",
   components: {
@@ -52,6 +53,10 @@ export default {
 
     pagination();
 
+    useMeta({
+      title: "Launches",
+      description: "All launches from SpaceX company.",
+    });
     return { ...toRefs(state), pagination, launchDetails };
   },
 };

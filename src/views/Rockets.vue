@@ -14,6 +14,7 @@ import { rocketsInfo } from "@/composables/api";
 import RocketCard from "@/components/Rockets/RocketCard";
 import { reactive, toRefs } from "@vue/reactivity";
 import { useRouter } from "vue-router";
+import { useMeta } from "vue-meta";
 export default {
   name: "Rockets",
   components: {
@@ -37,6 +38,12 @@ export default {
         path: `/rockets/${rocket.id}`,
       });
     };
+
+    useMeta({
+      title: "Rockets",
+      description: "All rockets from SpaceX company.",
+    });
+
     return { ...toRefs(state), rocketDetails };
   },
 };

@@ -5,8 +5,10 @@ import "./assets/scss/main.scss";
 import { ObserveVisibility } from "vue-observe-visibility";
 import { vfmPlugin } from "vue-final-modal";
 import VueGtag from "vue-gtag";
+import { createMetaManager } from "vue-meta";
 
 const app = createApp(App);
+const metaManager = createMetaManager();
 
 app.directive("observe-visibility", {
   beforeMount: (el, binding, vnode) => {
@@ -20,6 +22,7 @@ app.directive("observe-visibility", {
 app
   .use(router)
   .use(vfmPlugin)
+  .use(metaManager)
   .use(
     VueGtag,
     {

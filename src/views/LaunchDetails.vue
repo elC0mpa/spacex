@@ -39,6 +39,8 @@ import ImagesCollection from "@/components/ImagesCollection.vue";
 import LaunchShipsInfo from "@/components/LaunchDetails/LaunchShipsInfo.vue";
 import LaunchesCard from "@/components/Launches/LaunchesCard.vue";
 import LaunchPadDetails from "@/components/LaunchDetails/LaunchPadDetails.vue";
+import { useMeta } from "vue-meta";
+import { watchEffect } from "vue";
 
 export default {
   name: "LaunchDetails",
@@ -63,6 +65,15 @@ export default {
       .catch((error) => {
         console.log("Launch error: ", error);
       });
+
+    const { meta } = useMeta({
+      title: `${state.launch?.name ?? "Launch"}`,
+      description: `${state.launch?.details ?? "Launch description"}`,
+    });
+    watchEffect(() => {
+      meta.title = state.launch?.name;
+      meta.description = state.launch?.details ?? `${meta.title} details`;
+    });
 
     return { ...toRefs(state) };
   },
