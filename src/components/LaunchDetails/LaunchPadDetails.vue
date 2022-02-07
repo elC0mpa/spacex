@@ -72,6 +72,7 @@ export default {
   &__name {
     @include main-text;
     font-size: 4rem;
+    color: $star-command-blue;
   }
   &__map {
     margin-top: 2rem;
