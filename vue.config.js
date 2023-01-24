@@ -1,4 +1,5 @@
 module.exports = {
+  publicPath: '/spacex/',
   css: {
     loaderOptions: {
       sass: {
